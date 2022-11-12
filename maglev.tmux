@@ -4,20 +4,8 @@ set -e
 PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
 
 # Determine whether the tmux-cpu plugin should be installed
-SHOW_CPU=false
-if [[ $PLUGINS == *"tmux-cpu"* ]]; then
-    SHOW_CPU=true
-fi
-SHOW_BATTERY=false
-if [[ $PLUGINS == *"tmux-battery"* ]]; then
-    SHOW_BATTERY=true
-fi
-
-# Battery icons
-tmux set -g @batt_charged_icon "︎♡"
-tmux set -g @batt_charging_icon "︎♡"
-tmux set -g @batt_discharging_icon "︎♡"
-tmux set -g @batt_attached_icon "︎♡"
+SHOW_CPU=true
+SHOW_BATTERY=true
 
 # Optional prefix highlight plugin
 tmux set -g @prefix_highlight_show_copy_mode 'on'
@@ -152,7 +140,7 @@ apply_theme() {
     fi
 
     if [ "$SHOW_BATTERY" = true ]; then
-        status_right="$status_right #{battery_icon} #{battery_percentage}"
+        status_right="$status_right #{battery_color_charge_fg}#[bg=$host_bg,bold]#{battery_icon_charge} #{battery_percentage}#[fg=$host_fg,bg=$host_bg,bold]"
     fi
 
     # Only add intermediate separator if both CPU and Batter are to be displayed
