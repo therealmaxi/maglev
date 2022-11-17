@@ -132,20 +132,20 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour254           # white
-    status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
+    status_right="︎#{prefix_highlight} $right_separator %R $right_separator %d.%m.%Y"
 
     # Only show solid separator if CPU or Battery are to be displayed
     if [ "$SHOW_BATTERY" = true ] || [ "$SHOW_CPU" = true ]; then
-        status_right="$status_right $right_separator_black#[fg=$host_fg,bg=$host_bg,bold]"
+        status_right="$status_right $right_separator"
     fi
 
     if [ "$SHOW_BATTERY" = true ]; then
-        status_right="$status_right #{battery_color_charge_fg}#[bg=$host_bg,bold]#{battery_icon_charge} #{battery_percentage}#[fg=$host_fg,bg=$host_bg,bold]"
+        status_right="$status_right #{battery_color_charge_fg}#{battery_icon_charge} #{battery_percentage}"
     fi
 
     # Only add intermediate separator if both CPU and Batter are to be displayed
     if [ "$SHOW_BATTERY" = true ] && [ "$SHOW_CPU" = true ]; then
-        status_right="$status_right $right_separator"
+        status_right="$status_right #[default]$right_separator"
     fi
 
     if [ "$SHOW_CPU" = true ]; then
