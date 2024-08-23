@@ -81,7 +81,7 @@ apply_theme() {
 
     # windows mode
     mode_fg=colour16   # black
-    mode_bg=colour11 # yellow
+    mode_bg=colour114 #default colour11 # yellow
     mode_attr=bold
     tmux setw -g mode-style fg=$mode_fg,bg=$mode_bg,$mode_attr
 
@@ -103,8 +103,8 @@ apply_theme() {
     window_status_format="#I #W"
     tmux setw -g window-status-style fg=$window_status_fg,bg=$window_status_bg \; setw -g window-status-format "$window_status_format"
 
-    window_status_current_fg=colour16 # black
-    window_status_current_bg=colour4 # blue
+    window_status_current_fg=colour15 # white default colour16 # black
+    window_status_current_bg=colour22 # dark green default colour4 # blue
     window_status_current_format="#[fg=$window_status_bg,bg=$window_status_current_bg]$left_separator_black#[fg=$window_status_current_fg,bg=$window_status_current_bg,bold] #I $left_separator #W #[fg=$window_status_current_bg,bg=$status_bg,nobold]$left_separator_black"
     tmux setw -g window-status-current-format "$window_status_current_format"
     tmux set -g status-justify left
@@ -119,7 +119,7 @@ apply_theme() {
     window_status_bell_attr=blink,bold
     tmux setw -g window-status-bell-style fg=$window_status_bell_fg,bg=$window_status_bell_bg,$window_status_bell_attr
 
-    window_status_last_fg=colour4 # blue
+    window_status_last_fg=colour46 # light green default colour4 # blue
     window_status_last_attr=default
     tmux setw -g window-status-last-style $window_status_last_attr,fg=$window_status_last_fg
 
