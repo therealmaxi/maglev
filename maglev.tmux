@@ -5,7 +5,7 @@ PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
 
 # Determine whether the tmux-cpu plugin should be installed
 SHOW_CPU=true
-SHOW_BATTERY=true
+SHOW_BATTERY=false
 
 # Optional prefix highlight plugin
 tmux set -g @prefix_highlight_show_copy_mode 'on'
@@ -81,7 +81,7 @@ apply_theme() {
 
     # windows mode
     mode_fg=colour16   # black
-    mode_bg=colour114 #default colour11 # yellow
+    mode_bg=colour11 # yellow
     mode_attr=bold
     tmux setw -g mode-style fg=$mode_fg,bg=$mode_bg,$mode_attr
 
@@ -91,7 +91,7 @@ apply_theme() {
     tmux set -g status-style fg=$status_fg,bg=$status_bg
 
     session_fg=colour16  # black
-    session_bg=colour11 # yellow
+    session_bg=colour114 # light green default colour11 # yellow
     status_left="#[fg=$session_fg,bg=$session_bg,bold] ❐ #S #[fg=$session_bg,bg=$status_bg,nobold]$left_separator_black"
     if [ x"`tmux -q -L tmux_theme_status_left_test -f /dev/null new-session -d \; show -g -v status-left \; kill-session`" = x"[#S] " ] ; then
         status_left="$status_left "
@@ -103,8 +103,8 @@ apply_theme() {
     window_status_format="#I #W"
     tmux setw -g window-status-style fg=$window_status_fg,bg=$window_status_bg \; setw -g window-status-format "$window_status_format"
 
-    window_status_current_fg=colour15 # white default colour16 # black
-    window_status_current_bg=colour22 # dark green default colour4 # blue
+    window_status_current_fg=colour16 # black
+    window_status_current_bg=colour46 # dark green default colour4 # blue
     window_status_current_format="#[fg=$window_status_bg,bg=$window_status_current_bg]$left_separator_black#[fg=$window_status_current_fg,bg=$window_status_current_bg,bold] #I $left_separator #W #[fg=$window_status_current_bg,bg=$status_bg,nobold]$left_separator_black"
     tmux setw -g window-status-current-format "$window_status_current_format"
     tmux set -g status-justify left
