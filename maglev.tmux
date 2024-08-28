@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
+# PLUGINS=$(tmux show-options -g | grep @tpm_plugins)
 
 # Determine whether the tmux-cpu plugin should be installed
 SHOW_CPU=true
