@@ -5,7 +5,7 @@ set -e
 
 # Determine whether the tmux-cpu plugin should be installed
 SHOW_CPU=true
-SHOW_BATTERY=false
+SHOW_BATTERY=true
 
 # Optional prefix highlight plugin
 tmux set -g @prefix_highlight_show_copy_mode 'on'
